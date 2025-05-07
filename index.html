@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bilgisayar Mühendisliğinde Güncel Konular - Metaverse</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.3.2/dist/aframe-environment-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="index.js"></script>
+    <style>
+      .a-enter-vr-button {
+        background-color: rgba(0, 0, 0, 0.5) !important;
+      }
+    </style>
+  </head>
+  <body>
+    <a-scene>
+      <!-- Camera with look controls -->
+      <a-entity id="camera-rig" position="0 1.6 5">
+        <a-entity camera look-controls position="0 0 0" wasd-controls="acceleration: 15"></a-entity>
+      </a-entity>
+      
+      <!-- Fixed presentation text floating in front of camera -->
+      <a-entity id="presentation-text" position="0 2.1 -4">
+        <a-text value="BILGISAYAR MUHENDISLIGINDE" position="0 0.3 0" color="#FFF" width="5" align="center" 
+                font="https://cdn.aframe.io/fonts/Exo2Bold.fnt"></a-text>
+        <a-text value="GUNCEL KONULAR DERSI" position="0 0 0" color="#FFF" width="5" align="center"
+                font="https://cdn.aframe.io/fonts/Exo2Bold.fnt"></a-text>
+        <a-text value="METAVERSE" position="0 -0.5 0" color="#4CC3D9" width="7" align="center" 
+                font="https://cdn.aframe.io/fonts/Exo2Bold.fnt" scale="1.4 1.4 1.4"></a-text>
+        
+        <!-- Decorative frame for the text -->
+        <a-box position="0 0 -0.1" width="5.5" height="1.5" depth="0.05" 
+               material="color: #333; opacity: 0.7; transparent: true"></a-box>
+        
+        <!-- Glowing effect around the text -->
+        <a-entity light="type: point; intensity: 0.5; distance: 5; color: #4CC3D9" position="0 -0.5 1"></a-entity>
+      </a-entity>
+      
+      <!-- Environment (sky, ground) -->
+      <a-entity environment="preset: forest; dressingAmount: 30; groundTexture: squares; grid: cross"></a-entity>
+      
+      <!-- House -->
+      <a-entity id="house" position="5 0 -5">
+        <!-- House base -->
+        <a-box position="0 1.5 0" width="7" height="3" depth="5" color="#8B4513"></a-box>
+        
+        <!-- Roof -->
+        <a-entity position="0 3.5 0">
+          <a-box width="8" height="1.5" depth="6" rotation="0 0 45" color="#A52A2A"></a-box>
+        </a-entity>
+        
+        <!-- Door -->
+        <a-box position="0 1 2.51" width="1.5" height="2" depth="0.1" color="#4d2600"></a-box>
+        
+        <!-- Windows -->
+        <a-box position="-2 1.5 2.51" width="1" height="1" depth="0.1" color="#ADEEEE"></a-box>
+        <a-box position="2 1.5 2.51" width="1" height="1" depth="0.1" color="#ADEEEE"></a-box>
+        
+        <!-- Chimney -->
+        <a-box position="2.5 4 0" width="0.6" height="1.5" depth="0.6" color="#696969"></a-box>
+      </a-entity>
+      
+      <!-- Human-like figures -->
+      <!-- Person 1 - near the house -->
+      <a-entity id="person1" position="2 0 -3">
+        <!-- Body -->
+        <a-cylinder position="0 0.75 0" radius="0.25" height="1.5" color="#1E90FF"></a-cylinder>
+        <!-- Head -->
+        <a-sphere position="0 1.85 0" radius="0.3" color="#FFC0CB"></a-sphere>
+        <!-- Arms -->
+        <a-cylinder position="-0.4 0.95 0" radius="0.08" height="0.8" rotation="0 0 -20" color="#FFC0CB"></a-cylinder>
+        <a-cylinder position="0.4 0.95 0" radius="0.08" height="0.8" rotation="0 0 20" color="#FFC0CB"></a-cylinder>
+        <!-- Legs -->
+        <a-cylinder position="-0.15 0.2 0" radius="0.1" height="0.8" color="#000080"></a-cylinder>
+        <a-cylinder position="0.15 0.2 0" radius="0.1" height="0.8" color="#000080"></a-cylinder>
+        <!-- Animation -->
+        <a-animation attribute="position" dur="3000" from="2 0 -3" to="2 0 -2.7" direction="alternate" repeat="indefinite" easing="ease-in-out"></a-animation>
+      </a-entity>
+      
+      <!-- Person 2 - walking -->
+      <a-entity id="person2" position="-3 0 -7">
+        <!-- Body -->
+        <a-cylinder position="0 0.75 0" radius="0.25" height="1.5" color="#FF6347"></a-cylinder>
+        <!-- Head -->
+        <a-sphere position="0 1.85 0" radius="0.3" color="#FFC0CB"></a-sphere>
+        <!-- Arms -->
+        <a-cylinder position="-0.4 0.95 0" radius="0.08" height="0.8" rotation="0 0 -20" color="#FFC0CB"></a-cylinder>
+        <a-cylinder position="0.4 0.95 0" radius="0.08" height="0.8" rotation="0 0 20" color="#FFC0CB"></a-cylinder>
+        <!-- Legs -->
+        <a-cylinder position="-0.15 0.2 0" radius="0.1" height="0.8" color="#4B0082"></a-cylinder>
+        <a-cylinder position="0.15 0.2 0" radius="0.1" height="0.8" color="#4B0082"></a-cylinder>
+        <!-- Animation - walking in a loop -->
+        <a-animation attribute="position" dur="15000" from="-3 0 -7" to="10 0 -7" repeat="indefinite"></a-animation>
+      </a-entity>
+      
+      <!-- Person 3 - sitting near a campfire -->
+      <a-entity id="person3" position="-2 0 2">
+        <!-- Body (sitting) -->
+        <a-cylinder position="0 0.4 0" radius="0.25" height="0.8" color="#32CD32"></a-cylinder>
+        <!-- Head -->
+        <a-sphere position="0 1.1 0" radius="0.3" color="#FFC0CB"></a-sphere>
+        <!-- Arms -->
+        <a-cylinder position="-0.4 0.6 0" radius="0.08" height="0.6" rotation="0 0 -50" color="#FFC0CB"></a-cylinder>
+        <a-cylinder position="0.4 0.6 0" radius="0.08" height="0.6" rotation="0 0 50" color="#FFC0CB"></a-cylinder>
+        <!-- Legs (folded) -->
+        <a-cylinder position="-0.2 0.2 0.3" radius="0.1" height="0.5" rotation="80 0 0" color="#006400"></a-cylinder>
+        <a-cylinder position="0.2 0.2 0.3" radius="0.1" height="0.5" rotation="80 0 0" color="#006400"></a-cylinder>
+      </a-entity>
+      
+      <!-- Campfire -->
+      <a-entity id="campfire" position="-2 0 3">
+        <!-- Stones around fire -->
+        <a-cylinder position="0 0.1 0" radius="0.7" height="0.2" color="#696969"></a-cylinder>
+        <!-- Fire -->
+        <a-cylinder position="0 0.3 0" radius="0.4" height="0.4" color="#FF4500">
+          <a-animation attribute="height" dur="1000" from="0.4" to="0.6" direction="alternate" repeat="indefinite"></a-animation>
+        </a-cylinder>
+        <!-- Light from the fire -->
+        <a-entity light="type: point; intensity: 1.5; distance: 7; color: #FF4500" position="0 0.6 0">
+          <a-animation attribute="light.intensity" dur="1000" from="1.5" to="2" direction="alternate" repeat="indefinite"></a-animation>
+        </a-entity>
+        <!-- Logs -->
+        <a-cylinder position="0.1 0.25 0" radius="0.05" height="0.8" rotation="0 0 90" color="#8B4513"></a-cylinder>
+        <a-cylinder position="-0.1 0.25 0" radius="0.05" height="0.8" rotation="0 0 90" color="#8B4513"></a-cylinder>
+      </a-entity>
+      
+      <!-- Add some decorative elements -->
+      <a-entity id="decorations">
+        <!-- Trees -->
+        <a-cone position="-8 1.5 -8" radius-bottom="1" radius-top="0" height="3" color="#228B22"></a-cone>
+        <a-cylinder position="-8 0.4 -8" radius="0.3" height="1" color="#8B4513"></a-cylinder>
+        
+        <a-cone position="-10 2 -4" radius-bottom="1.2" radius-top="0" height="4" color="#228B22"></a-cone>
+        <a-cylinder position="-10 0.5 -4" radius="0.3" height="1" color="#8B4513"></a-cylinder>
+        
+        <!-- Rock formation -->
+        <a-entity position="8 0 0">
+          <a-sphere position="0 0.5 0" radius="1" segments-height="5" segments-width="10" color="#808080"></a-sphere>
+          <a-sphere position="0.8 0.3 0.3" radius="0.7" segments-height="5" segments-width="10" color="#A9A9A9"></a-sphere>
+          <a-sphere position="-0.5 0.7 -0.5" radius="0.6" segments-height="5" segments-width="10" color="#696969"></a-sphere>
+        </a-entity>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
